@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Gönderiler{% endblock %}
+{% block content %}
+  <h1>Gönderiler</h1>
+  {% for post in object_list %}
+    <article>
+      <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+      <p>{{ post.created|date:"d M Y" }} — {{ post.author }}</p>
+    </article>
+  {% empty %}
+    <p>Henüz gönderi yok.</p>
+  {% endfor %}
+
+  {% if is_paginated %}
+    <nav><!-- pagination links --></nav>
+  {% endif %}
+{% endblock %}
